@@ -12,23 +12,15 @@ export default class Cart {
     }
 
     amount(): number {
-      let sum: number = 0;
-      this._items.forEach(element => {
-        sum += element.price;
-      });
-      return sum;
+      return this._items.reduce((a, b) => a + b.price, 0);
     }
 
     discountedAmount(discount: number): number {
-      let sum: number = 0;
-      this._items.forEach(element => {
-        sum += element.price;
-      });
-      return sum * (100 - discount) / 100;
+      return this.amount() * (100 - discount) / 100;
     }
 
     remove(id: number): void {
-      const index: number = this._items.findIndex((element) => {
+      const index = this._items.findIndex((element) => {
         return id == element.id;
         
       });
